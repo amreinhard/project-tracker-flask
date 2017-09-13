@@ -19,6 +19,36 @@ def connect_to_db(app):
     db.init_app(app)
 
 
+def get_all_students():
+    """list of all the students"""
+
+    QUERY = """
+        SELECT first_name, last_name, github
+        FROM Students
+        """
+
+    db_cursor = db.session.execute(QUERY)
+
+    rows = db_cursor.fetchall()
+
+    return rows
+
+
+def get_all_projects():
+    """list of all the projects"""
+
+    QUERY = """
+        SELECT title, description, max_grade
+        FROM Projects
+        """
+
+    db_cursor = db.session.execute(QUERY)
+
+    rows = db_cursor.fetchall()
+
+    return rows
+
+
 def get_student_by_github(github):
     """Given a GitHub account name, print info about the matching student."""
 

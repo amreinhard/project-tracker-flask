@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>HOMEPAGE</title>
+</head>
+
+<body>
+
+  <h1>Select a Student or Project</h1>
+
+
+  <a href="/student-search">Search for a student</a>
+
+
+  <h1>Students:</h1>
+  <ul>
+  {% for names in students %}
+  <a href="/student/{{ names[2] }}"><li> {{ names[0] }} {{names[1]}}</a>
+  {% endfor %}
+  </li>
+
+  <h1>Projects:</h1>
+  </ul>
+  {% for project in projects %}
+    <li><a href="/project/{{ project[0] }}">{{ project[0] }} </a></li>
+  {% endfor %}
+  </ul>
+
+</body>
+</html>

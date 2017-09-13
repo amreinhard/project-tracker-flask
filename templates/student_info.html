@@ -10,7 +10,7 @@
 
   <ul>
     {% for items in project_grades %}
-    <li>Project: <a href="/project" name='project' value='item[0]'> {{ items[0] }}</a></li>
+    <li>Project: <a href="/project/{{ items[0] }}" name='project' value='item[0]'> {{ items[0] }}</a></li>
     <li>Grade: {{ items[1] }} </li>
     {% endfor %}
   </ul>

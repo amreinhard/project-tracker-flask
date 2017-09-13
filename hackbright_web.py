@@ -7,11 +7,28 @@ import hackbright
 app = Flask(__name__)
 
 
-@app.route("/student")
-def get_student():
-    """Show information about a student."""
+@app.route("/")
+def display_home():
+    """The homepage with student and project listings"""
+
+    students = hackbright.get_all_students()
+
+    projects = hackbright.get_all_projects()
+
+    return render_template("home.html", projects=projects, students=students)
+
+
+@app.route("/search_student")
+def search_student():
 
     github = request.args.get('github')
+
+    return redirect('/student/' + github)
+
+
+@app.route("/student/<github>")
+def get_student(github):
+    """Show information about a student."""
 
     test_github = hackbright.get_student_by_github(github)
 
@@ -58,16 +75,20 @@ def student_add():
     return render_template("added_student.html", github=student_github)
 
 
-@app.route("/project")
-def project():
+@app.route("/project/<title>")
+def project(title):
 
-    title = request.args.get('project')
+    grades = hackbright.get_grades_by_title(title)
 
-    print title
+    student = []
 
-    # projects = hackbright.get_project_by_title(title)
+    for grade in grades:
+        stu = hackbright.get_student_by_github(grade[0])
+        student.append(stu)
 
-    # return render_template("/project_info.html", projects=projects)
+    projects = hackbright.get_project_by_title(title)
+
+    return render_template("/project_info.html", projects=projects, grades=grades, student=student)
 
 
 if __name__ == "__main__":

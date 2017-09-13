@@ -4,17 +4,26 @@
     <title>Project Info</title>
 </head>
 <body>
-  <h1>{{  }}</h1>
-
-  <p> {{ }}</p>
+  <h1>Project Info</h1>
 
   <ul>
-    {% for items in projects %}
-    <li>Project:  {{ items[0] }} </li>
-    <li>Description: {{ items [1]}} </li>
-    <li>Maximum grade: {{ items[2] }} </li>
-    {% endfor %}
+    <li>Project:  {{ projects[0] }} </li>
+    <li>Description: {{ projects[1]}} </li>
+    <li>Maximum grade: {{ projects[2] }} </li>
   </ul>
 
+  <h1>Students who completed this project:</h1>
+  <ul>
+  {% for names in student %}
+    {% for score in grades %}
+      {% if names[2] == score[0] %}
+  <a href="/student/{{ names[2] }}"><li> {{ names[0] }} {{names[1]}}</a> {{ score [1]}}
+      {% endif%}
+    {% endfor %}
+  {% endfor %}
+  </li>
+
+
+  </ul>
 </body>
 </html>
