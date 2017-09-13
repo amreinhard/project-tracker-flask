@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <title>Project Info</title>
+</head>
+<body>
+  <h1>{{  }}</h1>
+
+  <p> {{ }}</p>
+
+  <ul>
+    {% for items in projects %}
+    <li>Project:  {{ items[0] }} </li>
+    <li>Description: {{ items [1]}} </li>
+    <li>Maximum grade: {{ items[2] }} </li>
+    {% endfor %}
+  </ul>
+
+</body>
+</html>
